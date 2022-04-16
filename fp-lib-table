@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name hardmpu-wt)(type KiCad)(uri ${KIPRJMOD}/hardmpu-wt.pretty)(options "")(descr ""))
+)
