@@ -1,5 +1,6 @@
 # hardmpu-wt
  HardMPU with wavetable module support
+![Assembled HardMPU](/img/assembled.jpg)
 
 ## Overview
 This is a clone of ab0tj's HardMPU board. I wanted one with a "Wave Blaster" header, so... here it is! If you don't need to install a wavetable module on your HardMPU, rather use ab0tj's original board.
