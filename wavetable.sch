@@ -81,39 +81,34 @@ Wire Wire Line
 $Comp
 L power:GND #PWR?
 U 1 1 62624326
-P 4050 2850
+P 4050 3650
 AR Path="/62624326" Ref="#PWR?"  Part="1" 
 AR Path="/6262004C/62624326" Ref="#PWR0142"  Part="1" 
-F 0 "#PWR0142" H 4050 2600 50  0001 C CNN
-F 1 "GND" H 4055 2677 50  0000 C CNN
-F 2 "" H 4050 2850 50  0001 C CNN
-F 3 "" H 4050 2850 50  0001 C CNN
-	1    4050 2850
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	4050 2850 4050 2750
-Wire Wire Line
-	4050 2750 4250 2750
-Connection ~ 4250 2750
-$Comp
-L power:GNDA #PWR?
-U 1 1 6262432F
-P 4050 3650
-AR Path="/6262432F" Ref="#PWR?"  Part="1" 
-AR Path="/6262004C/6262432F" Ref="#PWR0143"  Part="1" 
-F 0 "#PWR0143" H 4050 3400 50  0001 C CNN
-F 1 "GNDA" H 4055 3477 50  0000 C CNN
+F 0 "#PWR0142" H 4050 3400 50  0001 C CNN
+F 1 "GND" H 4055 3477 50  0000 C CNN
 F 2 "" H 4050 3650 50  0001 C CNN
 F 3 "" H 4050 3650 50  0001 C CNN
 	1    4050 3650
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	4250 3450 4050 3450
+	4050 3650 4050 2750
 Wire Wire Line
-	4050 3450 4050 3550
-Connection ~ 4250 3450
+	4050 2750 4250 2750
+Connection ~ 4250 2750
+$Comp
+L power:GNDA #PWR?
+U 1 1 6262432F
+P 4250 3650
+AR Path="/6262432F" Ref="#PWR?"  Part="1" 
+AR Path="/6262004C/6262432F" Ref="#PWR0143"  Part="1" 
+F 0 "#PWR0143" H 4250 3400 50  0001 C CNN
+F 1 "GNDA" H 4255 3477 50  0000 C CNN
+F 2 "" H 4250 3650 50  0001 C CNN
+F 3 "" H 4250 3650 50  0001 C CNN
+	1    4250 3650
+	1    0    0    -1  
+$EndComp
 NoConn ~ 4350 2850
 Text Label 5350 3350 2    50   ~ 0
 LEFT
@@ -263,9 +258,9 @@ Connection ~ 7150 3050
 Wire Wire Line
 	7150 3050 7150 3650
 Text GLabel 5250 2350 2    50   Input ~ 0
-MIDI_TX
+WT_TX
 Text GLabel 5250 2550 2    50   Output ~ 0
-MIDI_RX
+WT_RX
 $Comp
 L Device:Opamp_Dual_Generic U12
 U 1 1 62729C79
@@ -354,11 +349,10 @@ Wire Wire Line
 Wire Wire Line
 	4950 2950 4950 3550
 Wire Wire Line
-	4950 3550 4050 3550
+	4950 3550 4250 3550
 Connection ~ 4950 2950
-Connection ~ 4050 3550
 Wire Wire Line
-	4050 3550 4050 3650
+	4250 3550 4250 3650
 Wire Wire Line
 	7250 3450 6350 3450
 Connection ~ 7250 3450
@@ -609,4 +603,8 @@ F 3 "" H 2950 3400 50  0001 C CNN
 	1    2950 3400
 	-1   0    0    1   
 $EndComp
+Wire Wire Line
+	4250 3550 4250 3450
+Connection ~ 4250 3550
+Connection ~ 4250 3450
 $EndSCHEMATC

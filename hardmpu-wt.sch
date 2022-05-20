@@ -414,18 +414,6 @@ Wire Wire Line
 	8300 3100 8500 3100
 Wire Wire Line
 	8300 3200 8500 3200
-Text Label 8600 4200 2    50   ~ 0
-USER0
-Text Label 8600 4300 2    50   ~ 0
-USER1
-Text Label 8600 4400 2    50   ~ 0
-USER2
-Text Label 8600 4500 2    50   ~ 0
-USER3
-Text Label 8600 4600 2    50   ~ 0
-USER4
-Text Label 8600 4700 2    50   ~ 0
-USER5
 $Comp
 L Device:R R3
 U 1 1 624FD1B6
@@ -1653,14 +1641,10 @@ Wire Wire Line
 	9450 5400 9850 5400
 Wire Wire Line
 	9450 6000 9850 6000
-Text Label 8850 5400 0    50   ~ 0
-MIDI_TX
-Text Label 8850 6000 0    50   ~ 0
-MIDI_RX
 Wire Wire Line
-	8850 6000 9150 6000
+	8950 6000 9150 6000
 Wire Wire Line
-	8850 5400 9150 5400
+	8950 5400 9150 5400
 Text Label 9450 5400 0    50   ~ 0
 TX'
 Text Label 9450 6000 0    50   ~ 0
@@ -2241,10 +2225,6 @@ U 6262004C
 F0 "Wavetable" 50
 F1 "wavetable.sch" 50
 $EndSheet
-Text GLabel 8400 4100 2    50   Output ~ 0
-MIDI_TX
-Text GLabel 8400 4000 2    50   Input ~ 0
-MIDI_RX
 $Comp
 L Connector:Bus_ISA_8bit J8
 U 1 1 624BD62A
@@ -2269,16 +2249,12 @@ F 3 "~" H 9150 4400 50  0001 C CNN
 $EndComp
 Text GLabel 2650 6700 2    50   Output ~ 0
 ~RESET
-Wire Wire Line
-	8300 4000 8400 4000
-Wire Wire Line
-	8300 4100 8400 4100
 $Comp
 L Mechanical:MountingHole H1
 U 1 1 628BA5D1
 P 6400 5000
 F 0 "H1" H 6500 5046 50  0000 L CNN
-F 1 "WT_Hole1" H 6500 4955 50  0000 L CNN
+F 1 "WT_Hole" H 6500 4955 50  0000 L CNN
 F 2 "MountingHole:MountingHole_3.2mm_M3" H 6400 5000 50  0001 C CNN
 F 3 "~" H 6400 5000 50  0001 C CNN
 	1    6400 5000
@@ -2289,7 +2265,7 @@ L Mechanical:MountingHole H2
 U 1 1 628BB696
 P 6400 5200
 F 0 "H2" H 6500 5246 50  0000 L CNN
-F 1 "WT_Hole2" H 6500 5155 50  0000 L CNN
+F 1 "WT_Hole" H 6500 5155 50  0000 L CNN
 F 2 "MountingHole:MountingHole_3.2mm_M3" H 6400 5200 50  0001 C CNN
 F 3 "~" H 6400 5200 50  0001 C CNN
 	1    6400 5200
@@ -2307,4 +2283,63 @@ F 3 "~" H 6400 5450 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 NoConn ~ 6400 5550
+Text Label 8600 4400 2    50   ~ 0
+USER0
+Text Label 8600 4500 2    50   ~ 0
+USER1
+Text Label 8600 4600 2    50   ~ 0
+USER2
+Text Label 8600 4700 2    50   ~ 0
+USER3
+Wire Wire Line
+	8300 4100 8600 4100
+Wire Wire Line
+	8300 4000 8600 4000
+Text Label 8600 4200 2    50   ~ 0
+RX1
+Text Label 8600 4300 2    50   ~ 0
+TX1
+Text Label 8600 4000 2    50   ~ 0
+RX0
+Text Label 8600 4100 2    50   ~ 0
+TX0
+Text Label 8950 5400 0    50   ~ 0
+TX0
+Text Label 8950 6000 0    50   ~ 0
+RX0
+$Comp
+L Connector_Generic:Conn_02x03_Odd_Even JP3
+U 1 1 62929CB7
+P 9400 1400
+F 0 "JP3" H 9450 1717 50  0000 C CNN
+F 1 "WT Port" H 9450 1626 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical" H 9400 1400 50  0001 C CNN
+F 3 "~" H 9400 1400 50  0001 C CNN
+	1    9400 1400
+	1    0    0    -1  
+$EndComp
+Text GLabel 9100 1400 0    50   Input ~ 0
+WT_RX
+Text GLabel 9800 1400 2    50   Output ~ 0
+WT_TX
+Wire Wire Line
+	9100 1400 9200 1400
+Wire Wire Line
+	9700 1400 9800 1400
+Wire Wire Line
+	9200 1300 9000 1300
+Wire Wire Line
+	9200 1500 9000 1500
+Wire Wire Line
+	9700 1300 9900 1300
+Wire Wire Line
+	9700 1500 9900 1500
+Text Label 9000 1500 0    50   ~ 0
+RX0
+Text Label 9000 1300 0    50   ~ 0
+RX1
+Text Label 9900 1500 2    50   ~ 0
+TX0
+Text Label 9900 1300 2    50   ~ 0
+TX1
 $EndSCHEMATC
