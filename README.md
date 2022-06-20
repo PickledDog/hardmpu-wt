@@ -3,13 +3,29 @@
 
 ![Assembled HardMPU](/img/assembled.jpg)
 
-(board version 1.0 shown, 1.1 image pending. 1.1 includes additional UART select jumper and is compatible with common Keystone bracket)
-
 ## Overview
-This is a clone of ab0tj's HardMPU board. I wanted one with a "Wave Blaster" header, so... here it is! If you don't need to install a wavetable module on your HardMPU, rather use ab0tj's original board. In particular, to quote the HardMPU repo, `the circuit design is free for non-commercial use.` The presence of this implemtation does not permit commercial exploitation. If you build this, you may do so only for your own personal use. All [software](https://github.com/ab0tj/HardMPU/) is bound by the terms of the GPL. 
+This is a clone of ab0tj's HardMPU board. I wanted one with a "Wave Blaster" header, so... here it is! If you don't need to install a wavetable module on your HardMPU, rather use ab0tj's original board. In particular, to quote the HardMPU repo, `the circuit design is free for non-commercial use.` The presence of this implementation does not permit commercial exploitation. If you build this, you may do so only for your own personal use. All [software](https://github.com/ab0tj/HardMPU/) is bound by the terms of the GPL. 
+
+## Initial setup
+The ATmega needs to be programmed before use. This can be done using any AVR programmer (AVRISP, STK500, USBtinyISP, USBasp etc) - I recommend the [programmer from Pololu](https://www.pololu.com/product/3172). Program the board loose (not plugged into a computer!) with the programmer configured to power the target at 5V. The required firmware can be found [here](https://github.com/ab0tj/HardMPU/tree/master/bin), and [AVRDUDE](https://github.com/avrdudes/avrdude/) is used to install the firmware onto the ATmega.
+You will need to modify the `program.bat` to reflect your programmer and environment. For example, to use a Pololu programmer detected at COM4, change (per-line):
+```
+-c usbasp-clone
+```
+to
+```
+-c stk500v2 -P COM4
+```
+For Mac and Linux, change the BATch file to a shell script and adapt it accordingly (use `/dev/ttyUSB0` instead of `COM4` etc).
+
+## User port
+The optional User port (J2) allows adventurous builders to add features to the board, either internally or externally. It breaks out 4 GPIO pins, an I²C interface, the "Internal" serial interface (shared with the Wavetable header), and fused power and ground pins. Either regular or right-angled header (as pictured) can be installed in the J2 position; a hole will need to be cut in the bracket for external access. You will need to write your own code to use these interfaces - maybe add a status display using a common I²C LCD? The possibilities are not particularly limited!
 
 ## Part selection
-Bill Of Materials and part references are below. The specified parts are just the ones I used, and can be substituted as needed - Mouser links provided for convenience and reference. The OPA2134 is unobtanium at time of writing, but can be substituted with a NE5532 (or any decent dual opamp).
+The design permits "nicer" parts than necessary - for example, the audio jack footprint accepts both switched and unswitched sockets. Not all pads and holes in the board need to be filled. The OPA2134 can be substituted for other common dual opamps (like the NE5532). Some connectors are optional - J2 and J5 in particular are seldom-used.
+
+## Parts list
+Bill Of Materials and part references are below. The specified parts are just the ones I used, and can be substituted as needed - Mouser links provided for convenience and reference. You will need to drill a single hole in the specified bracket for the audio jack - refer to the PCB file for size and location.
 
 | Reference | Value | Qty | Mouser link |
 | --------- | ----- | --- | ----------- |
@@ -21,7 +37,7 @@ Bill Of Materials and part references are below. The specified parts are just th
 | F1 | 500mA PPTC fuse | 1 | [Bourns MF-R050-0-17](https://www.mouser.com/ProductDetail/652-MF-R050-0-17) |
 | J1 | D-Sub DA-15 female | 1 | [Amphenol L77SDA15SA4CH4F](https://www.mouser.com/ProductDetail/523-L77SDA15SA4CH4F) |
 | J2 | 2x5 right-angle header | 1 | [Amphenol 10129382-910002BLF](https://www.mouser.com/ProductDetail/649-1012938291002BLF) |
-| J3 | 3.5mm jack socket | 1 | [CUI SJ1-3555NG](https://www.mouser.com/ProductDetail/490-SJ1-3555NG) |
+| J3 | 3.5mm jack socket | 1 | [CUI SJ1-3553NG](https://www.mouser.com/ProductDetail/490-SJ1-3553NG) |
 | J4 | 2x3 box header | 1 | [Wurth 61200621621](https://www.mouser.com/ProductDetail/710-61200621621) |
 | J5 | 2x5 box header | 1 | [Wurth 61201021621](https://www.mouser.com/ProductDetail/710-61201021621) |
 | J6 | 2x13 header | 1 | [Amphenol 67997-226HLF](https://www.mouser.com/ProductDetail/649-67997-226HLF) |
