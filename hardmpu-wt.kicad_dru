@@ -1,0 +1,6 @@
+(version 1)
+
+(rule edgeclear
+(condition "A.insideArea('ignore_edge_cuts') && A.Type == 'Pad'")
+(constraint edge_clearance(min -1mm))
+)
