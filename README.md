@@ -7,7 +7,13 @@
 This is a clone of ab0tj's HardMPU board. I wanted one with a "Wave Blaster" header, so... here it is! If you don't need to install a wavetable module on your HardMPU, rather use ab0tj's original board. In particular, to quote the HardMPU repo, `the circuit design is free for non-commercial use.` The presence of this implementation does not permit commercial exploitation. If you build this, you may do so only for your own personal use. All [software](https://github.com/ab0tj/HardMPU/) is bound by the terms of the GPL. 
 
 ## Initial setup
-The ATmega needs to be programmed before use. This can be done using any AVR programmer (AVRISP, STK500, USBtinyISP, USBasp etc) - I recommend the [programmer from Pololu](https://www.pololu.com/product/3172). Program the board loose (not plugged into a computer!) with the programmer configured to power the target at 5V. The required firmware can be found [here](https://github.com/ab0tj/HardMPU/tree/master/bin), and [AVRDUDE](https://github.com/avrdudes/avrdude/) is used to install the firmware onto the ATmega.
+The ATmega needs to be programmed before use. This can be done using any AVR programmer (AVRISP, STK500, USBtinyISP, USBasp etc), or a universal programmer (TL866, T48).
+
+### Using an AVR programmer
+This method programs the ATmega chip in-place (with the board fully assembled), through the J4 ISP connector. The listed programmers work similarly, but AVRDUDE will need to be told what programmer you are using. This example uses the [programmer from Pololu](https://www.pololu.com/product/3172).
+
+Program the board loose (not plugged into a computer!) with the programmer configured to power the target at 5V. The required firmware can be found [in ab0tj's repository](https://github.com/ab0tj/HardMPU/tree/master/bin) (download all files), and [AVRDUDE](https://github.com/avrdudes/avrdude/) is used to install the firmware onto the ATmega.
+
 You will need to modify the `program.bat` to reflect your programmer and environment. For example, to use a Pololu programmer detected at COM4, change (per-line):
 ```
 -c usbasp-clone
@@ -18,11 +24,18 @@ to
 ```
 For Mac and Linux, change the BATch file to a shell script and adapt it accordingly (use `/dev/ttyUSB0` instead of `COM4` etc).
 
+### Using a TL866
+If you're using a TL866 or T48, the firmware is programmed directly to the ATmega chip before installing it - the J4 connector isn't used here, and can be omitted. Download `HardMPU.hex` from [ab0tj's repository](https://github.com/ab0tj/HardMPU/tree/master/bin) and open it with the standard XGpro tool. Go to the **Config** tab and set the fuses as follows:
+
+![ATmega1284 fuse config](/img/fuses.png)
+
+With the firmware loaded and the fuses set, go ahead and program the ATmega chip.
+
 ## User port
 The optional User port (J2) allows adventurous builders to add features to the board, either internally or externally. It breaks out 4 GPIO pins, an I²C interface, the "Internal" serial interface (shared with the Wavetable header), and fused power and ground pins. Either regular or right-angled header (as pictured) can be installed in the J2 position; a hole will need to be cut in the bracket for external access. You will need to write your own code to use these interfaces - maybe add a status display using a common I²C LCD? The possibilities are not particularly limited!
 
 ## Part selection
-The design permits "nicer" parts than necessary - for example, the audio jack footprint accepts both switched and unswitched sockets. Not all pads and holes in the board need to be filled. The OPA2134 can be substituted for other common dual opamps (like the NE5532). Some connectors are optional - J2 and J5 in particular are seldom-used.
+The design permits "nicer" parts than necessary - for example, the audio jack footprint accepts both switched and unswitched sockets. Not all pads and holes in the board need to be filled. The OPA2134 can be substituted for other common dual opamps (like the NE5532). Some connectors are optional - J2 and J5 in particular are seldom-used. An [ATmega1284](https://www.mouser.com/ProductDetail/556-ATMEGA1284-PU) can be used in place of the ATmega1284P if the latter isn't in stock; you will need to update `program.bat` accordingly.
 
 ## Parts list
 Bill Of Materials and part references are below. The specified parts are just the ones I used, and can be substituted as needed - Mouser links provided for convenience and reference. You will need to drill a single hole in the specified bracket for the audio jack - refer to the PCB file for size and location.
@@ -54,6 +67,7 @@ Bill Of Materials and part references are below. The specified parts are just th
 | U6 | 74HCT240 | 1 | [TI SN74HCT240N](https://www.mouser.com/ProductDetail/595-SN74HCT240N) |
 | U7, U8 | 74HCT74 | 2 | [TI CD74HCT74E](https://www.mouser.com/ProductDetail/595-CD74HCT74E) |
 | U9 | ATmega1284P | 1 | [Atmel ATmega1284P](https://www.mouser.com/ProductDetail/556-ATMEGA1284P-PU) |
+| | socket | 1 | [Amphenol DILB40P-223TLF](https://www.mouser.com/ProductDetail/649-DILB40P223TLF) |
 | U10 | 78L05 | 1 | [ST L78L05ACZ](https://www.mouser.com/ProductDetail/511-L78L05ACZ) |
 | U11 | 79L05 | 1 | [ST L79L05ACZ](https://www.mouser.com/ProductDetail/511-L79L05ACZ) |
 | U12 | OPA2134 | 1 | [TI OPA2134PA](https://www.mouser.com/ProductDetail/595-OPA2134PA) |
