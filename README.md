@@ -34,6 +34,15 @@ With the firmware loaded and the fuses set, go ahead and program the ATmega chip
 ## User port
 The optional User port (J2) allows adventurous builders to add features to the board, either internally or externally. It breaks out 4 GPIO pins, an I²C interface, the "Internal" serial interface (shared with the Wavetable header), and fused power and ground pins. Either regular or right-angled header (as pictured) can be installed in the J2 position; a hole will need to be cut in the bracket for external access. You will need to write your own code to use these interfaces - maybe add a status display using a common I²C LCD? The possibilities are not particularly limited!
 
+## Usage
+With the card built and the chip programmed, it's ready to be installed in the ISA slot of your vintage PC. Copy `hardmpu.com` from the firmware folder above to the PC's hard drive - this is the config tool for HardMPU. Use it to select between internal and external MIDI devices, enable a delay for "rev 0" Roland MT-32s, and other miscellaneous options. Settings *do not persist* across reboots, so this will need to be added to `autoexec.bat` if the defaults aren't adequate.
+
+### External MIDI
+To connect it to an external synthesizer, you'll need a "Sound Blaster MIDI" cable - you can find a used one, [buy a new one](https://www.ebay.com/sch/i.html?_nkw=game+port+midi+cable), or [build your own](https://github.com/PickledDog/sb-midi). If shopping for a new one, *make sure to pick the one with large black DA-15 plugs* since it has the electronics in the plug. ***Do not use the "metal plugs" kind, they are passive and may damage your synthesizer.***
+
+### Internal MIDI ("Wave Blaster")
+Plug the wavetable board onto the 26-pin header, aligning the pin 1 arrows on both boards. Audio is output through both the 3.5mm jack and the AuxOut header on the board. The latter can be fed into your regular sound card using a standard "MPC2" CD Audio cable (assuming it has a spare input). You will need to use the `hardmpu.com` tool to select the internal MIDI port.
+
 ## Part selection
 The design permits "nicer" parts than necessary - for example, the audio jack footprint accepts both switched and unswitched sockets. Not all pads and holes in the board need to be filled. The OPA2134 can be substituted for other common dual opamps (like the NE5532). Some connectors are optional - J2 and J5 in particular are seldom-used. An [ATmega1284](https://www.mouser.com/ProductDetail/556-ATMEGA1284-PU) can be used in place of the ATmega1284P if the latter isn't in stock; you will need to update `program.bat` accordingly.
 
